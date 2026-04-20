@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zeyvera | Operational Continuity Audits for Founder-Led Teams</title>
+  <meta name="description" content="Zeyvera helps founder-led and lean teams find workflow bottlenecks, handoff failures, and single points of failure, then turn them into a continuity-ready operating system.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#08080A">
+  <meta name="author" content="Zeyvera">
+  <link rel="canonical" href="https://zeyvera.ca/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zeyvera | Operational Continuity Audits for Founder-Led Teams">
+  <meta property="og:description" content="Zeyvera helps founder-led and lean teams find workflow bottlenecks, handoff failures, and single points of failure, then turn them into a continuity-ready operating system.">
+  <meta property="og:url" content="https://zeyvera.ca/">
+  <meta property="og:site_name" content="Zeyvera">
+  <meta property="og:image" content="https://zeyvera.ca/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Zeyvera operational continuity diagnostics">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zeyvera | Operational Continuity Audits for Founder-Led Teams">
+  <meta name="twitter:description" content="Zeyvera helps founder-led and lean teams find workflow bottlenecks, handoff failures, and single points of failure, then turn them into a continuity-ready operating system.">
+  <meta name="twitter:image" content="https://zeyvera.ca/og-image.png">
+  <link rel="stylesheet" href="/styles.css">
+  
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "name":"Zeyvera",
+      "url":"https://zeyvera.ca/",
+      "logo":"https://zeyvera.ca/icon-512.png",
+      "email":"contact@zeyvera.ca",
+      "description":"Operational continuity diagnostics for founder-led and lean teams."
+    },
+    {
+      "@type":"Service",
+      "name":"Zeyvera Operational Continuity Audit",
+      "provider":{"@type":"Organization","name":"Zeyvera"},
+      "areaServed":"Global",
+      "serviceType":"Operational continuity assessment, workflow mapping, continuity risk analysis, AI readiness review",
+      "url":"https://zeyvera.ca/"
+    },
+    {
+      "@type":"WebSite",
+      "name":"Zeyvera",
+      "url":"https://zeyvera.ca/"
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+<header class="site-header">
+  <div class="shell">
+    <a href="/" class="brand" aria-label="Zeyvera home">
+      <span class="brand-mark" aria-hidden="true">Z</span>
+      <span>ZEYVERA</span>
+    </a>
+
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/#process">How it works</a></li>
+        <li><a href="/deliverables/">Deliverables</a></li>
+        <li><a href="/diagnostic/">Diagnostic</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </nav>
+
+    <div class="cta-row">
+      <a class="button primary" href="/diagnostic/">Start diagnostic</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="shell hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Operational continuity, clarified</span>
+        <h1>If your business depends on people “just knowing how things work,” you have an operational risk.</h1>
+        <p>
+          Zeyvera helps founder-led and lean teams uncover workflow bottlenecks, handoff failures,
+          and single points of failure — then turns those findings into a continuity-ready operating
+          system with clear next steps.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="/diagnostic/">Start the diagnostic</a>
+          <a class="button secondary" href="/deliverables/">See deliverables</a>
+        </div>
+
+        <div class="hero-proof" aria-label="Brand highlights">
+          <div class="proof-item">
+            <strong>Founder-led fit</strong>
+            <span>Best for teams where operational knowledge still lives in people, chats, habits, and scattered tools.</span>
+          </div>
+          <div class="proof-item">
+            <strong>Confidential process</strong>
+            <span>Structured intake, privacy-first handling, and human-reviewed outputs built for sensitive internal workflows.</span>
+          </div>
+          <div class="proof-item">
+            <strong>Practical outcomes</strong>
+            <span>Workflow visibility, continuity risk analysis, AI-readiness insights, and a prioritized implementation path.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="frame">
+          <div class="grid-bg"></div>
+          <div class="float-tag tag-a">Workflow mapping</div>
+          <div class="float-tag tag-b">Continuity-ready</div>
+          <div class="device-stack">
+            <div class="device large">
+              <div class="device-screen">
+                <div class="micro-nav"></div>
+                <div class="line gold" style="width:72%"></div>
+                <div class="line" style="width:86%"></div>
+                <div class="line" style="width:68%"></div>
+                <div class="chip-cluster">
+                  <div class="chip">Single-point risk</div>
+                  <div class="chip">Workflow fog</div>
+                  <div class="chip">Handoff failure</div>
+                  <div class="chip">AI readiness</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="device small">
+              <div class="device-screen">
+                <div class="line gold" style="width:82%"></div>
+                <div class="line" style="width:65%"></div>
+                <div class="line" style="width:92%"></div>
+                <div class="line" style="width:58%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pain">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow">The real problem</span>
+        <h2>Most operations do not break because people are careless. They break because the business lives in scattered memory.</h2>
+        <p>
+          When delivery relies on tribal knowledge, invisible approvals, and founder memory, growth amplifies
+          confusion. Zeyvera is built to surface that reality fast.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Key-person dependency</h3>
+          <p>When one operator is absent, the business slows down because the real process only exists in their head.</p>
+          <ul class="spec-list">
+            <li>Founder bottlenecks</li>
+            <li>Shadow approvals</li>
+            <li>No reliable fallback</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 7h14M5 12h9M5 17h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Workflow fog</h3>
+          <p>Tasks happen, but nobody can map where they start, where they stall, or who truly owns the handoff.</p>
+          <ul class="spec-list">
+            <li>Scattered source-of-truth</li>
+            <li>Repeated explanation loops</li>
+            <li>Fragile delivery quality</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Unsafe scaling</h3>
+          <p>You can grow revenue faster than you grow operational clarity. That is where mistakes begin compounding.</p>
+          <ul class="spec-list">
+            <li>Duplicated admin work</li>
+            <li>Inconsistent client delivery</li>
+            <li>Reactive firefighting</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="5" y="4" width="14" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Documentation gaps</h3>
+          <p>Critical tasks remain undocumented until a handoff fails, a staff member leaves, or pressure exposes the gap.</p>
+          <ul class="spec-list">
+            <li>Missing playbooks</li>
+            <li>Ad hoc onboarding</li>
+            <li>Poor continuity under absence</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="deliverable-preview">
+    <div class="shell split">
+      <div class="stat-panel reveal">
+        <span class="eyebrow">What you receive</span>
+        <h2 style="margin:.9rem 0 0; font-size:clamp(2rem, 4vw, 3rem); line-height:1.04; letter-spacing:-.04em;">Clear outputs, not generic consulting language.</h2>
+        <div class="stats">
+          <div class="stat">
+            <strong>01</strong>
+            <span>Executive summary with the most material continuity, workflow, and scaling risks.</span>
+          </div>
+          <div class="stat">
+            <strong>02</strong>
+            <span>Workflow map showing handoffs, bottlenecks, dependency points, and likely failure zones.</span>
+          </div>
+          <div class="stat">
+            <strong>03</strong>
+            <span>Continuity risk analysis covering knowledge bottlenecks, privacy-sensitive tasks, and absence scenarios.</span>
+          </div>
+          <div class="stat">
+            <strong>04</strong>
+            <span>30-day action plan with safe automation opportunities and a realistic implementation order.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-panel reveal">
+        <span class="eyebrow">What this process uncovers</span>
+        <div class="story-list">
+          <div class="story-item">
+            <strong>Approvals routed through one person with no backup.</strong>
+            Growth looks healthy from the outside, but a single absence stalls billing, delivery, or client response.
+          </div>
+          <div class="story-item">
+            <strong>Client delivery depends on undocumented manual steps.</strong>
+            Different people execute the “same” process differently, causing inconsistency and rework.
+          </div>
+          <div class="story-item">
+            <strong>Automation is possible, but not safe everywhere.</strong>
+            Some workflows are ideal for AI support. Others are too sensitive or too ambiguous without better structure first.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>The site is designed around trust first, depth second.</h2>
+        <p>
+          Cold visitors do not want a 60-minute form. Serious buyers will complete a deeper intake
+          once the value is clear. This flow respects that.
+        </p>
+      </div>
+
+      <div class="journey">
+        <article class="step reveal">
+          <div class="num">1</div>
+          <h3>Short diagnostic</h3>
+          <p>Start with a focused qualification form that identifies pain, fit, urgency, and likely operating risk.</p>
+        </article>
+        <article class="step reveal">
+          <div class="num">2</div>
+          <h3>Manual review</h3>
+          <p>Review submissions for seriousness, complexity, and whether a deeper assessment is justified.</p>
+        </article>
+        <article class="step reveal">
+          <div class="num">3</div>
+          <h3>Strategy call or deeper intake</h3>
+          <p>Only if there is a fit, continue into a structured deep-dive rather than asking everyone for everything upfront.</p>
+        </article>
+        <article class="step reveal">
+          <div class="num">4</div>
+          <h3>Audit and roadmap</h3>
+          <p>Deliver a continuity-focused operating assessment with practical priorities, not vague advice.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fit">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow">Best fit</span>
+        <h2>This is for lean teams with real operational complexity.</h2>
+        <p>
+          Zeyvera is strongest when the business is growing, people are wearing multiple hats, and
+          the process quality has not fully caught up to the delivery burden.
+        </p>
+      </div>
+
+      <div class="check-grid">
+        <div class="panel reveal">
+          <h3>Good fit</h3>
+          <ul class="bullets">
+            <li><span>Founder-led B2B service firms and lean operations teams.</span></li>
+            <li><span>AI/SaaS companies with 5–75 people and visible workflow complexity.</span></li>
+            <li><span>Agencies, consultancies, implementation teams, and support-heavy businesses.</span></li>
+            <li><span>Teams that know they have handoff friction, documentation gaps, or key-person dependency.</span></li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <h3>Not the right fit</h3>
+          <ul class="bullets">
+            <li><span>Visitors looking for generic automation hype with no operational clarity work behind it.</span></li>
+            <li><span>Teams with no urgency, no operator buy-in, or no willingness to expose the real workflow.</span></li>
+            <li><span>Businesses expecting a free universal playbook instead of a specific analysis.</span></li>
+            <li><span>Enterprise-scale transformation programs needing a large implementation team immediately.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>Answer the resistance before it kills the lead.</h2>
+        <p>
+          The strongest version of this site explains why the process is structured the way it is.
+        </p>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item reveal" data-open="true">
+          <button class="faq-question" type="button" aria-expanded="true">
+            <span>Why not ask for the full intake immediately?</span>
+            <span class="chev">+</span>
+          </button>
+          <div class="faq-answer">
+            <div>
+              Because cold visitors rarely complete a long intake unless the value is already obvious. The short diagnostic qualifies fit first. Deeper information is only requested after there is a clear reason to continue.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" data-open="false">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>How long does the diagnostic take?</span>
+            <span class="chev">+</span>
+          </button>
+          <div class="faq-answer">
+            <div>
+              About 5–8 minutes for most teams. It is designed to capture meaningful context without forcing a full operational download on the first interaction.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" data-open="false">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>What does the deeper intake cover later?</span>
+            <span class="chev">+</span>
+          </button>
+          <div class="faq-answer">
+            <div>
+              The deeper intake expands into workflow mapping, handoffs, documentation state, privacy-sensitive tasks, continuity under absence, and safe automation opportunities. It comes later because it only makes sense after fit is established.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" data-open="false">
+          <button class="faq-question" type="button" aria-expanded="false">
+            <span>Is this just AI consulting?</span>
+            <span class="chev">+</span>
+          </button>
+          <div class="faq-answer">
+            <div>
+              No. AI is one part of the picture. The core offer is operational clarity: finding bottlenecks, handoff failures, and single points of failure, then identifying where automation is actually safe and useful.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cta">
+    <div class="shell">
+      <div class="cta-panel reveal">
+        <div class="cta-copy">
+          <span class="eyebrow">Start here</span>
+          <h2>Find out where your operations are fragile before growth exposes it.</h2>
+          <p>
+            Start with the short diagnostic. If there is a clear fit, the process can move into a deeper intake and strategy review without wasting anybody’s time.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="/diagnostic/">Start the diagnostic</a>
+            <a class="button secondary" href="/deliverables/">Review deliverables</a>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>What the first step collects</h3>
+          <ul class="bullets">
+            <li><span>Company context, role, and team shape.</span></li>
+            <li><span>The pressure points that feel most fragile right now.</span></li>
+            <li><span>What breaks when a key operator is unavailable.</span></li>
+            <li><span>How documented the workflows are today.</span></li>
+            <li><span>Desired outcome, urgency, and next-step preference.</span></li>
+          </ul>
+          <p class="inline-note">The form on this site submits directly to <a href="mailto:contact@zeyvera.ca">contact@zeyvera.ca</a> through a Cloudflare Pages Function.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell footer-row">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">Z</span>
+      <span>ZEYVERA</span>
+    </div>
+    <div class="micro"><a href="mailto:contact@zeyvera.ca">contact@zeyvera.ca</a></div>
+    <div class="micro">© <span id="year"></span> Zeyvera. All rights reserved.</div>
+  </div>
+</footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

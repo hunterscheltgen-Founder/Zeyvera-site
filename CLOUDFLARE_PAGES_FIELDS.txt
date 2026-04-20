@@ -1,0 +1,4 @@
+# Local development only. Do not commit real secrets.
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+CONTACT_EMAIL=contact@zeyvera.ca
+FROM_EMAIL=Zeyvera Intake <intake@send.zeyvera.ca>

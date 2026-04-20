@@ -1,0 +1,130 @@
+# Zeyvera deployment reset guide
+
+This package is already wired so the diagnostic form submits to `/api/submit`, and the server-side function emails the full intake to `contact@zeyvera.ca` using Resend.
+
+## 1) Delete the broken GitHub repo contents
+
+Open your GitHub repository and remove the broken files if the current `wrangler.toml` is wrong.
+
+The cleanest reset is:
+1. Delete the repository entirely, or create a brand-new repository.
+2. Repository name: `zeyvera-site`
+3. Initialize it with a README.
+
+## 2) Upload the correct files
+
+Unzip this package on your computer.
+
+Open the extracted folder and upload the **contents inside it**, not the outer folder itself.
+
+Your GitHub repo root must show:
+
+- `README.md`
+- `package.json`
+- `wrangler.toml`
+- `functions/`
+- `public/`
+- `CLOUDFLARE_PAGES_FIELDS.txt`
+- `.dev.vars.example`
+
+If GitHub shows only one wrapper folder, you uploaded one level too high.
+
+## 3) Confirm the critical files
+
+### `wrangler.toml`
+
+```toml
+name = "zeyvera-site"
+compatibility_date = "2026-04-19"
+pages_build_output_dir = "./public"
+```
+
+### `public/robots.txt`
+
+```txt
+User-agent: *
+Allow: /
+
+Sitemap: https://zeyvera.ca/sitemap.xml
+```
+
+## 4) Connect GitHub to Cloudflare Pages
+
+In Cloudflare:
+1. Workers & Pages
+2. Create application
+3. Pages
+4. Connect to Git
+5. Select the `zeyvera-site` repo
+
+Use these exact build settings:
+
+- Project name: `zeyvera-site`
+- Production branch: `main`
+- Framework preset: `None`
+- Build command: leave blank
+- Build output directory: `public`
+- Root directory: leave blank
+
+## 5) Add the required environment variables
+
+After the project is created, open:
+
+**Settings → Environment variables**
+
+Add these values to Production:
+
+- `RESEND_API_KEY` = your real Resend API key
+- `CONTACT_EMAIL` = `contact@zeyvera.ca`
+- `FROM_EMAIL` = `Zeyvera Intake <intake@send.zeyvera.ca>`
+
+## 6) Required email provider setup
+
+In Resend:
+1. Verify a sending domain or subdomain
+2. Recommended subdomain: `send.zeyvera.ca`
+3. Recommended sender: `intake@send.zeyvera.ca`
+
+The site cannot send mail until `RESEND_API_KEY` is added and `FROM_EMAIL` uses a verified sender.
+
+## 7) Deploy and test
+
+After the first deployment:
+1. Open the `*.pages.dev` URL
+2. Visit `/diagnostic/`
+3. Fill out the form
+4. Submit it
+5. Confirm the intake email arrives at `contact@zeyvera.ca`
+
+## 8) Add the custom domain
+
+Once the Pages URL works:
+1. Open the Pages project
+2. Go to Custom domains
+3. Add `zeyvera.ca` or `www.zeyvera.ca`
+
+If you use the apex domain `zeyvera.ca`, the zone must be on Cloudflare.
+
+## 9) What the email contains
+
+The submission email includes:
+- full name
+- work email
+- company
+- role
+- website
+- industry
+- team size
+- selected pain areas
+- operational pain summary
+- absence impact summary
+- workflow location
+- documentation state
+- automation state
+- privacy-sensitive workflow notes
+- desired outcome
+- urgency
+- preferred next step
+- additional notes
+
+The message is sent with `reply_to` set to the submitter's email address.

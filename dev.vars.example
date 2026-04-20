@@ -1,0 +1,60 @@
+# Zeyvera Cloudflare Pages package
+
+This package is a static multi-page site plus a Cloudflare Pages Function that sends the diagnostic form to `contact@zeyvera.ca`.
+
+## What is included
+
+- `public/` static site assets and pages
+- `functions/api/submit.js` server-side form handler
+- premium dark visual system adapted to Zeyvera's operational continuity offer
+- a staged diagnostic form instead of a cold 45–60 minute intake
+- SEO basics: canonical tags, Open Graph tags, sitemap, robots, manifest, favicon
+- security headers via `public/_headers`
+
+## How the form works
+
+The browser submits JSON to `/api/submit`.
+The Pages Function validates the submission and sends an email through Resend's API to `contact@zeyvera.ca`.
+
+This means the site can actually send form submissions, but **email will not work until you configure a sending provider**.
+
+## Required Cloudflare / Resend setup
+
+### 1) Create a Resend account
+Verify a sending domain or subdomain.
+
+Recommended:
+- verify a subdomain such as `send.zeyvera.ca`
+- use a from address like `intake@send.zeyvera.ca`
+
+### 2) Add environment variables in Cloudflare Pages
+
+In your Cloudflare Pages project add:
+
+- `RESEND_API_KEY` = your Resend API key
+- `CONTACT_EMAIL` = `contact@zeyvera.ca`
+- `FROM_EMAIL` = `Zeyvera Intake <intake@send.zeyvera.ca>`
+
+### 3) Deploy
+You can deploy from Git or locally with Wrangler.
+
+#### Local preview
+```bash
+npm install
+npx wrangler pages dev public
+```
+
+#### Deploy from the project folder
+```bash
+npm install
+npx wrangler pages deploy public --project-name zeyvera-site
+```
+
+If you deploy through the Cloudflare dashboard, set the build output directory to `public`.
+
+## Notes
+
+- The form has a basic honeypot anti-spam field.
+- The current canonical and sitemap URLs point to `https://zeyvera.ca/`. Change them if your live domain will be different.
+- The thank-you page is `/thanks/`.
+- The diagnostic page is `/diagnostic/`.

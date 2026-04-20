@@ -1,0 +1,249 @@
+
+(() => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const siteNav = document.querySelector('.site-nav');
+
+  if (menuToggle && siteNav) {
+    menuToggle.addEventListener('click', () => {
+      const open = siteNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
+
+    siteNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        siteNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const button = item.querySelector('.faq-question');
+    if (!button) return;
+    button.addEventListener('click', () => {
+      const open = item.getAttribute('data-open') === 'true';
+      item.setAttribute('data-open', String(!open));
+      button.setAttribute('aria-expanded', String(!open));
+    });
+  });
+
+  const observer = ('IntersectionObserver' in window)
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 })
+    : null;
+
+  document.querySelectorAll('.reveal').forEach((el) => {
+    if (observer) observer.observe(el);
+    else el.classList.add('visible');
+  });
+
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+
+  const form = document.getElementById('diagnostic-form');
+  if (!form) return;
+
+  const steps = Array.from(form.querySelectorAll('.form-step'));
+  const stepItems = Array.from(document.querySelectorAll('.stepper-item'));
+  const progressValue = document.querySelector('.progress-value');
+  const progressText = document.getElementById('progress-text');
+  const notice = document.getElementById('form-notice');
+  const nextButtons = form.querySelectorAll('[data-next]');
+  const backButtons = form.querySelectorAll('[data-back]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const startedAtInput = form.querySelector('input[name="startedAt"]');
+  const honeypotInput = form.querySelector('input[name="websiteFax"]');
+
+  let currentStep = 0;
+
+  if (startedAtInput && !startedAtInput.value) {
+    startedAtInput.value = new Date().toISOString();
+  }
+
+  function setNotice(message = '', tone = '') {
+    if (!notice) return;
+    notice.textContent = message;
+    notice.className = 'notice';
+    if (tone) notice.classList.add(tone);
+  }
+
+  function updateStepDisplay() {
+    steps.forEach((step, index) => {
+      step.classList.toggle('active', index === currentStep);
+    });
+
+    stepItems.forEach((item, index) => {
+      item.setAttribute('data-active', String(index === currentStep));
+    });
+
+    const percent = ((currentStep + 1) / steps.length) * 100;
+    if (progressValue) progressValue.style.width = `${percent}%`;
+    if (progressText) progressText.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function getFieldsForStep(stepIndex) {
+    return Array.from(steps[stepIndex].querySelectorAll('input, textarea, select')).filter((field) => {
+      if (field.type === 'hidden' || field.type === 'button') return false;
+      if (field.disabled) return false;
+      return true;
+    });
+  }
+
+  function validateStep(stepIndex) {
+    const fields = getFieldsForStep(stepIndex);
+    let valid = true;
+    let firstInvalid = null;
+    let groupError = '';
+
+    fields.forEach((field) => {
+      field.setCustomValidity('');
+
+      if (field.required) {
+        if (field.type === 'checkbox') {
+          const name = field.name;
+          const group = fields.filter((candidate) => candidate.name === name);
+          if (group.some((candidate) => candidate.checked)) return;
+          valid = false;
+          groupError = 'Please choose at least one pressure area.';
+          if (!firstInvalid) firstInvalid = field;
+          return;
+        }
+
+        if (!String(field.value || '').trim()) {
+          valid = false;
+          if (!firstInvalid) firstInvalid = field;
+          return;
+        }
+      }
+
+      if (field.type === 'email' && field.value) {
+        const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+        if (!emailIsValid) {
+          valid = false;
+          field.setCustomValidity('Please enter a valid email address.');
+          if (!firstInvalid) firstInvalid = field;
+        }
+      }
+
+      if (field.name === 'website' && field.value) {
+        const candidate = field.value.trim();
+        const looksLikeUrl = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}/i.test(candidate);
+        if (!looksLikeUrl) {
+          valid = false;
+          field.setCustomValidity('Please enter a valid website or leave it blank.');
+          if (!firstInvalid) firstInvalid = field;
+        }
+      }
+    });
+
+    if (!valid && firstInvalid) {
+      const message = groupError || firstInvalid.validationMessage || 'Please complete the highlighted fields before continuing.';
+      setNotice(message, 'error');
+      firstInvalid.reportValidity?.();
+      firstInvalid.focus?.();
+    } else {
+      setNotice('');
+    }
+
+    return valid;
+  }
+
+  nextButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!validateStep(currentStep)) return;
+      currentStep = Math.min(currentStep + 1, steps.length - 1);
+      updateStepDisplay();
+    });
+  });
+
+  backButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      setNotice('');
+      currentStep = Math.max(currentStep - 1, 0);
+      updateStepDisplay();
+    });
+  });
+
+  function collectCheckboxValues(name) {
+    return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map((input) => input.value);
+  }
+
+  function formDataToPayload() {
+    const data = new FormData(form);
+    return {
+      name: String(data.get('name') || '').trim(),
+      email: String(data.get('email') || '').trim(),
+      company: String(data.get('company') || '').trim(),
+      role: String(data.get('role') || '').trim(),
+      website: String(data.get('website') || '').trim(),
+      industry: String(data.get('industry') || '').trim(),
+      teamSize: String(data.get('teamSize') || '').trim(),
+      painAreas: collectCheckboxValues('painAreas'),
+      operationalPain: String(data.get('operationalPain') || '').trim(),
+      absenceImpact: String(data.get('absenceImpact') || '').trim(),
+      workflowLocation: String(data.get('workflowLocation') || '').trim(),
+      documentationState: String(data.get('documentationState') || '').trim(),
+      automationState: String(data.get('automationState') || '').trim(),
+      privacySensitive: String(data.get('privacySensitive') || '').trim(),
+      desiredOutcome: String(data.get('desiredOutcome') || '').trim(),
+      urgency: String(data.get('urgency') || '').trim(),
+      preferredNextStep: String(data.get('preferredNextStep') || '').trim(),
+      notes: String(data.get('notes') || '').trim(),
+      startedAt: String(data.get('startedAt') || '').trim(),
+      websiteFax: honeypotInput ? String(honeypotInput.value || '').trim() : ''
+    };
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    for (let i = 0; i < steps.length; i += 1) {
+      if (!validateStep(i)) {
+        currentStep = i;
+        updateStepDisplay();
+        return;
+      }
+    }
+
+    const payload = formDataToPayload();
+
+    submitButton?.setAttribute('disabled', 'disabled');
+    setNotice('Sending diagnostic…');
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const errorMessage = data.error || 'Something went wrong while sending the diagnostic.';
+        throw new Error(errorMessage);
+      }
+
+      setNotice('Diagnostic sent. Redirecting…', 'success');
+      const companyParam = payload.company ? `?company=${encodeURIComponent(payload.company)}` : '';
+      window.location.assign(`/thanks/${companyParam}`);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Something went wrong while sending the diagnostic.';
+      setNotice(message, 'error');
+    } finally {
+      submitButton?.removeAttribute('disabled');
+    }
+  });
+
+  updateStepDisplay();
+})();

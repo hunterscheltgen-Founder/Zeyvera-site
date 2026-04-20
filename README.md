@@ -1,1 +1,3 @@
-# Zeyvera-site
+name = "zeyvera-site"
+compatibility_date = "2026-04-19"
+pages_build_output_dir = "./public"
