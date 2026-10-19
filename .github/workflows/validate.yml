@@ -1,0 +1,23 @@
+name: Validate Zeyvera site
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check functions/api/submit.js
+      - name: Check required deployment files
+        run: |
+          test -f public/index.html
+          test -f public/diagnostic/index.html
+          test -f public/privacy/index.html
+          test -f public/thanks/index.html
+          test -f public/styles.css
+          test -f wrangler.toml
+          test -f package.json
