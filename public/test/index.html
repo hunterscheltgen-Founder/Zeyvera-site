@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Health Check | Zeyvera</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A lightweight diagnostic page for checking Zeyvera website routes and form endpoint availability.">
+<link rel="stylesheet" href="/styles.css">
+<style>
+.health-wrap{max-width:850px;margin:0 auto;padding:64px 20px 90px}.health-wrap h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.05;letter-spacing:-.04em}.health-panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:22px;margin:22px 0}.health-list{list-style:none;padding:0;margin:0}.health-list li{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.health-list li:last-child{border-bottom:0}.status{display:inline-flex;min-width:82px;justify-content:center;border-radius:99px;padding:3px 9px;font-size:.75rem;font-weight:800;background:#ffffff14;color:var(--muted)}.status.pass{background:#1c4934;color:#a9f0c4}.status.fail{background:#5a2525;color:#ffc0c0}.status.warn{background:#55421d;color:#f8dc94}.test-title{font-weight:700}.test-detail{display:block;color:var(--muted);font-size:.88rem;overflow-wrap:anywhere}.health-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.small-note{color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<header class="top"><a class="brand" href="/"><span class="mark">Z</span><span>ZEYVERA</span></a><nav><a href="/">Home</a><a href="/diagnostic/">Diagnostic form</a></nav></header>
+<main class="health-wrap">
+<p class="eyebrow">SITE DIAGNOSTICS</p>
+<h1>Website health check</h1>
+<p class="muted">This page checks whether the public site routes, stylesheet, and diagnostic API route respond. It does not send a lead, test email delivery, or confirm that the whole production system is healthy.</p>
+<div class="health-panel"><p><strong>Overall result: <span id="overall">Running checks…</span></strong></p><ul class="health-list" id="results" aria-live="polite"><li>Running checks…</li></ul><div class="health-actions"><button class="btn primary" id="rerun" type="button">Run checks again ↻</button><a class="btn secondary" href="/diagnostic/">Open diagnostic form →</a><a class="btn secondary" href="/">Open homepage →</a></div></div>
+<p class="small-note">For a meaningful email test, configure the required server-side email settings first and submit the diagnostic form using your own non-sensitive test details. Do not place secrets or API keys on this page.</p>
+</main>
+<script>
+(async function(){
+ const resultsEl=document.getElementById('results');
+ const overallEl=document.getElementById('overall');
+ const checks=[];
+ const add=(name,status,detail)=>checks.push({name,status,detail});
+ async function route(path,label){
+  try{
+   const response=await fetch(path,{method:'GET',cache:'no-store'});
+   if(response.ok) add(label,'pass','HTTP '+response.status+' — route responded.');
+   else add(label,'fail','HTTP '+response.status+' — route returned an error.');
+  }catch(error){add(label,'fail','Request failed: '+(error&&error.message?error.message:'network error'));}
+ }
+ async function run(){
+  checks.length=0;
+  resultsEl.innerHTML='<li>Running checks…</li>';
+  overallEl.textContent='Running checks…';
+  const css=document.querySelector('link[rel="stylesheet"]');
+  const cssLoaded=Array.from(document.styleSheets).some(s=>s.href&&s.href.endsWith('/styles.css'));
+  add('Shared stylesheet',cssLoaded?'pass':'fail',cssLoaded?'The browser loaded /styles.css.':'The shared stylesheet is not present in the browser stylesheet list.');
+  await Promise.all([
+   route('/','Homepage'),
+   route('/automation/','Automation service page'),
+   route('/diagnostic/','Diagnostic form page'),
+   (async()=>{
+    try{
+     const r=await fetch('/api/submit',{method:'GET',cache:'no-store'});
+     const contentType=r.headers.get('content-type')||'';
+     if(r.status===405 && contentType.includes('application/json')) add('Diagnostic API route','pass','HTTP 405 for GET is expected; the API route is responding and only accepts POST.');
+     else if(r.status===405) add('Diagnostic API route','warn','HTTP 405 received; route responds, but its error format differs from expected.');
+     else add('Diagnostic API route','fail','Expected HTTP 405 for GET, received HTTP '+r.status+'.');
+    }catch(error){add('Diagnostic API route','fail','Request failed: '+(error&&error.message?error.message:'network error'));}
+   })()
+  ]);
+  resultsEl.innerHTML='';
+  for(const c of checks){
+   const li=document.createElement('li');
+   const badge=document.createElement('span');badge.className='status '+c.status;badge.textContent=c.status==='pass'?'PASS':c.status==='fail'?'FAIL':'CHECK';
+   const text=document.createElement('div');const title=document.createElement('span');title.className='test-title';title.textContent=c.name;
+   const detail=document.createElement('span');detail.className='test-detail';detail.textContent=c.detail;text.append(title,detail);li.append(badge,text);resultsEl.append(li);
+  }
+  const failures=checks.filter(c=>c.status==='fail').length;
+  const warnings=checks.filter(c=>c.status==='warn').length;
+  overallEl.textContent=failures?failures+' check(s) failed':warnings?'Routes responded with '+warnings+' item(s) to review':'All '+checks.length+' basic checks passed';
+  overallEl.style.color=failures?'#ffc0c0':warnings?'#f8dc94':'#a9f0c4';
+ }
+ document.getElementById('rerun').addEventListener('click',run);
+ await run();
+})();
+</script>
+</body>
+</html>
